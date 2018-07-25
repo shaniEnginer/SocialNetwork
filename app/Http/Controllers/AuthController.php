@@ -1,11 +1,27 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use Auth;
 use Illuminate\Http\Request;
 use App\User;
 class AuthController extends Controller
 {
+
+
+
+    // public function __construct()
+    // {
+    //     $this->middleware('auth', ['except' =>['getSignin','getSignup']]);
+    // }
+
+
+
+
+
+
+
+
+
    public function getSignup()
    {
 
@@ -30,8 +46,49 @@ $user->email=$request->input('email');
 $user->name=$request->input('name');
 $user->password=bcrypt($request->input('password'));
 $user->save();
-return redirect('\created')->with('success','You are Registered now and login to your account !');
+return redirect('created')->with('success','You are Registered now and login to your account !');
 }
+
+
+
+public function getSignin()
+{
+
+return view('auth.sigin');
+
+}
+
+public function postSignin( Request $request)
+{
+
+    $this->validate($request,[
+'email'=>'required',
+'password'=>'required',
+    ]);
+                   if(!Auth::attempt($request->only(['email','password']),$request->has('remember')))
+            
+                           {
+                return redirect()->back()->with('error','could not sigin you with These Detailes');
+                        }
+
+
+                   else{
+
+                         return redirect()->route('logedhome')->with('info','you are sigin');
+}
+ 
+                          }
+
+public function getSignout()
+{
+Auth::logout();
+return redirect()->route('home');
+
+}
+
+
+
+
 
 
 

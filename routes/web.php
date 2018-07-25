@@ -24,6 +24,15 @@ Route::get('/' ,
 ]);
 
 
+
+Route::get('/logedin' ,
+[ 'uses'=>	'PagesController@logedindex',
+'as'=>'logedhome',
+]);
+
+
+
+
 Route::get('/signup' ,
 [ 'uses'=>	'AuthController@getSignup',
 'as'=>'auth.signup',
@@ -34,6 +43,28 @@ Route::post('/signup' ,
 // 'as'=>'auth.signup',
 ]);
 
+
+Route::get('/signin' ,
+[ 'uses'=>	'AuthController@getSignin',
+'as'=>'auth.signin',
+]);
+
+Route::post('/signin' ,
+[ 'uses'=>	'AuthController@postSignin',
+// 'as'=>'auth.signup',
+]);
+
+
+Route::get('/signout' ,
+[ 'uses'=>	'AuthController@getSignout',
+'as'=>'auth.signout',
+]);
+
+
+Route::get('/search','SearchController@GetSearchResult')->name('search.result');
+
+
+
 Route::get('/alert', function()
 {
 
@@ -43,5 +74,5 @@ return redirect()->route('home')->with('info' ,' Sign in Successfully !');
 
 // 
 // Route::get('/' ,'PagesController@index');
-Route::get('/services', 'PagesController@Services');
+Route::get('/created', 'PagesController@index');
 Route::get('/contact' ,'PagesController@contact');

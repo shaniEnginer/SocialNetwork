@@ -19,9 +19,9 @@ class User extends Authenticatable
         'name', 
         'email',
         'password',
-        'first_name',
-        'last_name',
-        'location',
+        // 'first_name',
+        // 'last_name',
+        // 'location',
     ];
 
     /**
@@ -34,4 +34,19 @@ class User extends Authenticatable
         'password',
         'remember_token',
     ];
+    public function getUserName()
+{
+
+     if($this->name)
+     return "{$this->name}";
+else 
+return "entity";
+
+}
+
+
+
+
+
+
 }
