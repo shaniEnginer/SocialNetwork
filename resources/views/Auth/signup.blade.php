@@ -2,7 +2,7 @@
 
 @section('content')
 
-<div class="jumbotron">
+<div class="row">
 	<h2>Sign Up</h2>
 </div>
 <div class="row">
@@ -15,7 +15,7 @@
 <div class="form-group">
 
 	<label>Enter your email here</label>
-	<input type="text" name="email" class="form-control{{$errors->has('email') ? ' is-invalid ': ''}}" value="{{Request::old('email') ?:''}}">
+	<input type="text" placeholder="name@example.com" name="email" class="form-control{{$errors->has('email') ? ' is-invalid ': ''}}" value="{{Request::old('email') ?:''}}">
 	@if($errors->has('email'))
 
 <span class="help-block text-danger">
@@ -25,11 +25,11 @@
 	@endif
 </div>
 
-<!-- Username Div -->
+{{--  <!-- Username Div -->  --}}
 
 <div class="form-group">
 	<label>Choose a userame</label>
-	<input type="text" name="name" class="form-control{{$errors->has('name') ? ' is-invalid' : ''}}" value="{{Request::old('name') ?:''}}">
+	<input type="text" placeholder="Usman e.g" name="name" class="form-control{{$errors->has('name') ? ' is-invalid' : ''}}" value="{{Request::old('name') ?:''}}">
 @if($errors->has('name'))
 
 <span class="help-block text-danger">
@@ -43,7 +43,7 @@
 <!-- Password Div -->
 <div class="form-group">
 	<label>Choose a password</label>
-	<input type="password" name="password" class="form-control{{$errors->has('password') ? ' is-invalid' : ''}}" >
+	<input type="password" placeholder="atleast 6 chars" name="password" class="form-control{{$errors->has('password') ? ' is-invalid' : ''}}" >
 	@if($errors->has('password'))
 
 <span class="help-block text-danger">

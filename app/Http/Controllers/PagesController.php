@@ -7,30 +7,36 @@ use Auth;
 class PagesController extends Controller
 {
 
-    // public function __construct()
-    // {
-    //     $this->middleware('auth', ['except' =>'index']);
-    // }
+public function __construct()
+{
+    $this->middleware('auth', ['except'=>'index']);
+}
 
 
-    /* Displays the index Controller */
+/* Displays the index Controller */
 
-    public function index()
-    {
-    // $name=Auth::user()->getUserName();
-    return view('pages.index');
-    
-    }
-    
-
-
-
-    public function logedindex()
+public function index()
+{
+if(Auth::check())
 {
 $name=Auth::user()->getUserName();
-return view('pages.logedindex')->with('name',$name);
+return view('pages.timeline')->with('name',$name);
 
 }
+else 
+{
+    return view('pages.index');
+}
+
+}
+
+
+
+
+// public function logedindex()
+// {
+
+// }
 
 /*  */
 public function Services()

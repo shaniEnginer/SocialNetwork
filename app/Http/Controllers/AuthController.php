@@ -9,10 +9,6 @@ class AuthController extends Controller
 
 
 
-    // public function __construct()
-    // {
-    //     $this->middleware('auth', ['except' =>['getSignin','getSignup']]);
-    // }
 
 
 
@@ -22,13 +18,13 @@ class AuthController extends Controller
 
 
 
-   public function getSignup()
-   {
+public function getSignup()
+{
 
 
 return view('Auth.signup');
 
-   }
+}
 
 
 
@@ -61,28 +57,27 @@ return view('auth.sigin');
 public function postSignin( Request $request)
 {
 
-    $this->validate($request,[
+$this->validate($request,[
 'email'=>'required',
 'password'=>'required',
-    ]);
-                   if(!Auth::attempt($request->only(['email','password']),$request->has('remember')))
-            
-                           {
-                return redirect()->back()->with('error','could not sigin you with These Detailes');
-                        }
-
-
-                   else{
-
-                         return redirect()->route('logedhome')->with('info','you are sigin');
+]);
+if(!Auth::attempt($request->only(['email','password']),$request->has('remember')))
+{
+return redirect()->back()->with('error','could not sigin you with These Detailes');
 }
- 
-                          }
+
+
+else{
+
+return redirect()->route('timeline')->with('info','you are sigin');
+}
+
+}
 
 public function getSignout()
 {
 Auth::logout();
-return redirect()->route('home');
+return redirect()->route('login');
 
 }
 

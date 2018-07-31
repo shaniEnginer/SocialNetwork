@@ -1,6 +1,6 @@
 @extends('layout.app')
 @section('content')
-<div class="jumbotron clear-both">
+<div class="row">
 	<h2>Sign in</h2>
 </div>
 <div class="row">

@@ -11,28 +11,22 @@
 |
 */
 
-// Route::get('/', function () {
-//     return view('welcome');
-// });
-
-
-//  Test Rout
-
+/** With out Auth Controller */
 Route::get('/' ,
 [ 'uses'=>	'PagesController@index',
-'as'=>'home',
+'as'=>'login',
+]);
+
+
+/** Auth Controller */
+Route::get('/timeline' ,
+[ 'uses'=>	'PagesController@index',
+'as'=>'timeline',
 ]);
 
 
 
-Route::get('/logedin' ,
-[ 'uses'=>	'PagesController@logedindex',
-'as'=>'logedhome',
-]);
-
-
-
-
+/** Sign up Controllers  */
 Route::get('/signup' ,
 [ 'uses'=>	'AuthController@getSignup',
 'as'=>'auth.signup',
@@ -40,9 +34,9 @@ Route::get('/signup' ,
 
 Route::post('/signup' ,
 [ 'uses'=>	'AuthController@postSignup',
-// 'as'=>'auth.signup',
-]);
 
+]);
+/** Sigin Controllers */
 
 Route::get('/signin' ,
 [ 'uses'=>	'AuthController@getSignin',
@@ -54,25 +48,30 @@ Route::post('/signin' ,
 // 'as'=>'auth.signup',
 ]);
 
+/** Sign out Controller */
 
 Route::get('/signout' ,
 [ 'uses'=>	'AuthController@getSignout',
 'as'=>'auth.signout',
 ]);
 
-
+/** Search Controller */
 Route::get('/search','SearchController@GetSearchResult')->name('search.result');
 
 
 
-Route::get('/alert', function()
-{
+/** Show profile Controller
+ */
+Route::get('/users/{username}','ProfileController@index')->name('profile.show');
 
-return redirect()->route('home')->with('info' ,' Sign in Successfully !');
-});
+/**Profile Update Controllers */
+
+Route::get('/update','ProfileController@getProfile')->name('profile.update');
+Route::post('/update','ProfileController@postProfile');
 
 
-// 
-// Route::get('/' ,'PagesController@index');
-Route::get('/created', 'PagesController@index');
-Route::get('/contact' ,'PagesController@contact');
+/**  showing  Friends  on friends Controller */
+Route::get('/friends','friendsController@getIndex')->name('friends.index');
+
+/** Adding A Friend On friends Controllers  */
+Route::get('/friends/add/{$username}','friendsController@getAdd')->name('friends.add');
