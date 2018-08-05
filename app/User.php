@@ -50,6 +50,14 @@ public function getUrl()
 return "https://www.gravatar.com/avatar/{{md5($this->email)}}?d=mm&s=40";
 }
 
+
+/** Relation between Users And Statuses */
+public function status()
+{
+
+return $this->hasMany('App\Status','user_id');
+}
+
 /** Createing The relation  */
 
 

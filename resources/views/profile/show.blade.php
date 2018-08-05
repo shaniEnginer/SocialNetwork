@@ -1,13 +1,13 @@
 @extends('layout.app')
 @section('content')
+
 <div class="row">
 <div class="col-lg-5">
-
+<br>
 @include('Users.partials.userblock')
-<hr>
 </div>
 <div class="col-lg-4 clo-lg-offset-3">
-
+<hr>
 @if(Auth::user()->hasfriendRequestsPending($user))
 <p>waiting orn {{$user->getuserName()}} to accept Request </p>
 

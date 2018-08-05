@@ -4,13 +4,14 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Auth;
+use App\Status;
 class PagesController extends Controller
 {
 
-public function __construct()
-{
-    $this->middleware('auth', ['except'=>'index']);
-}
+// public function __construct()
+// {
+//     $this->middleware('auth', ['except'=>'index']);
+// }
 
 
 /* Displays the index Controller */
@@ -19,13 +20,20 @@ public function index()
 {
 if(Auth::check())
 {
-$name=Auth::user()->getUserName();
-return view('pages.timeline')->with('name',$name);
+$status=Status::where( function( $query)
+{
+return $query->where('user_id', Auth::user()->id)
+->orWhereIn('user_id', Auth::user()->friends()->pluck('id'));
+
+});
+dd($status);
+// $name=Auth::user()->getUserName();
+return view('pages.timeline')->with('statuses',$status);
 
 }
 else 
 {
-    return view('pages.index');
+return view('pages.index');
 }
 
 }

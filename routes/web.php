@@ -74,4 +74,12 @@ Route::post('/update','ProfileController@postProfile');
 Route::get('/friends','friendsController@getIndex')->name('friends.index');
 
 /** Adding A Friend On friends Controllers  */
-Route::get('/friends/add/{$username}','friendsController@getAdd')->name('friends.add');
+Route::get('/add/{$username}','friendsController@getAdd')->name('friends.add');
+
+// Route::get('/friendss/','friendsController@ss');
+
+
+/** Status controller */
+Route::post('/status', 'statusController@status')->name('status.post');
+
+

@@ -74,6 +74,7 @@
 <div class="container">
 @include('parts.alert')
 @yield('content')
+<br>
 </div>
 <script src="{{ asset('js/app.js') }}"></script>
 
