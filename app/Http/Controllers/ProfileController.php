@@ -53,8 +53,6 @@ Auth::user()->update([
 
 'name'=>$request->input('name'),
 'email'=>$request->input('email'),
-
-
 ]);
 return redirect()->route('timeline')->with('success',' Your Profile has been updated Successfully');
 

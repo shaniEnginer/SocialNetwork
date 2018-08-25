@@ -8,15 +8,10 @@ class AuthController extends Controller
 {
 
 
-
-
-
-
-
-
-
-
-
+// public function __construct()
+// {
+//     $this->middleware('guest')->except('getSignout');;
+// }
 
 public function getSignup()
 {
@@ -61,6 +56,9 @@ $this->validate($request,[
 'email'=>'required',
 'password'=>'required',
 ]);
+// if(!Auth::
+// Auth::attempt(['email' => $email, 'password' => $password]);
+// )
 if(!Auth::attempt($request->only(['email','password']),$request->has('remember')))
 {
 return redirect()->back()->with('error','could not sigin you with These Detailes');
@@ -80,11 +78,4 @@ Auth::logout();
 return redirect()->route('login');
 
 }
-
-
-
-
-
-
-
 }

@@ -62,6 +62,10 @@ return [
     |
     | Supported: "database", "eloquent"
     |
+
+
+
+    
     */
 
     'providers' => [

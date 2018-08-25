@@ -50,11 +50,10 @@ public function getUrl()
 return "https://www.gravatar.com/avatar/{{md5($this->email)}}?d=mm&s=40";
 }
 
-
 /** Relation between Users And Statuses */
 public function status()
 {
-
+/** Added */
 return $this->hasMany('App\Status','user_id');
 }
 
@@ -112,14 +111,19 @@ return (bool)$this->friendRequestsPending()->where('id',$user->id)->count();
 /** Actual method For Request that are Revieved  CODE 2*/
 public function hasfriendRequestsRecieved( User $user)
 {
-return (bool)$this->friendRequests()->where('id',$user->id)->count();
+return (bool)$this->
+friendRequests()->
+where('id',$user->id)
+->count();
 }
 
 /** NOT CONFORMED */
 public function addFriend(User $user)
 {
 
-$this->friendsOf()->attatch($user->id);
+$this->
+friendsOf()->
+attatch($user->id);
 }
 
 /** Actual Adding Friend  */
@@ -127,14 +131,20 @@ $this->friendsOf()->attatch($user->id);
 public function acceptFriendRequest(User $user)
 {
 
-$this->friendRequests()->where('id',$user->id)->pivot->update([ 'accapted'=>true]);
+$this->
+friendRequests()->
+where('id',$user->id)->pivot->
+update([ 'accapted'=>true]);
 }
 
 
 
 public function isFriendWith( User $user)
 {
-return (bool)$this->friends()->where('id',$user->id)->count();
+return (bool)$this->
+friends()->
+where('id',$user->id)->
+count();
 
 }
 

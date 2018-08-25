@@ -25,8 +25,8 @@ $status=Status::where( function( $query)
 return $query->where('user_id', Auth::user()->id)
 ->orWhereIn('user_id', Auth::user()->friends()->pluck('id'));
 
-});
-dd($status);
+})->orderBy('created_at','desc')->paginate();
+// dd($status);
 // $name=Auth::user()->getUserName();
 return view('pages.timeline')->with('statuses',$status);
 

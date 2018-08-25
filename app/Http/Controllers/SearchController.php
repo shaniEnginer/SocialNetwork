@@ -22,6 +22,7 @@ if($query==null)
 
 return redirect()->route('home');
 }
+
 $users=User::where(DB::raw("CONCAT(name)"),'LIKE',"%{$query}%")->get();
 return view('search.result')->with('users',$users);
 
